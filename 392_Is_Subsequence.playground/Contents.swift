@@ -2,20 +2,20 @@ import UIKit
 
 class Solution {
     func isSubsequence(_ s: String, _ t: String) -> Bool {
-        if s.isEmpty { return true }
-        let sArray = Array(s)
-        var counter = sArray.count
-        var i = 0
-        for tLetter in t {
-            if sArray[i] == tLetter {
-                counter-=1
-                if counter == 0 {
-                    return true
-                }
+        var i = 0, j = 0
+        let sLength = s.count
+        let tLength = t.count
+        while i < sLength && j < tLength {
+            let sStartIndex = s.index(s.startIndex, offsetBy: i)
+            let sEndIndex = s.index(s.startIndex, offsetBy: i+1)
+            let tStartIndex = t.index(t.startIndex, offsetBy: j)
+            let tEndIndex = t.index(t.startIndex, offsetBy: j+1)
+            if s[sStartIndex..<sEndIndex] == t[tStartIndex..<tEndIndex]  {
                 i+=1
             }
+            j+=1
         }
-        return false
+        return i == sLength
     }
 }
 
